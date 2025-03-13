@@ -16,6 +16,7 @@
     tree
     bat
     dnsutils
+    openssl
   ];
 
   environment.variables.EDITOR = "vim";

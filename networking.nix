@@ -1,5 +1,9 @@
 { lib, ... }: {
   networking = {
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 80 443 222 ];
+    };
     nameservers = [
       "2a01:4ff:ff00::add:1"
       "2a01:4ff:ff00::add:2"
@@ -12,6 +16,7 @@
     };
     dhcpcd.enable = false;
     usePredictableInterfaceNames = lib.mkForce false;
+
     interfaces = {
       eth0 = {
         ipv4.addresses = [
@@ -24,11 +29,10 @@
         ipv4.routes = [ { address = "172.31.1.1"; prefixLength = 32; } ];
         ipv6.routes = [ { address = "fe80::1"; prefixLength = 128; } ];
       };
-      
     };
   };
+
   services.udev.extraRules = ''
     ATTR{address}=="96:00:04:11:c8:22", NAME="eth0"
-    
   '';
 }
