@@ -2,10 +2,9 @@
   imports = [
     ./networking.nix
     ./programs.nix
-    ./zsh.nix
-    ./vim.nix
     ./services.nix
     ./users.nix
+    # ./sops.nix
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 

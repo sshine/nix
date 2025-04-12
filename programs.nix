@@ -1,5 +1,19 @@
 { pkgs, ... }:
+let
+  schemesh-pkg = pkgs.fetchgit {
+    url = "https://github.com/cosmos72/schemesh.git";
+    rev = "refs/heads/main";
+    sha256 = "sha256-8yyVryQhJWiFlXp0xvGRapB8mHw8ydsIP4oW5vlC62Y";
+  };
+  schemesh = pkgs.callPackage schemesh-pkg {};
+in
 {
+  imports = [
+    ./programs/zsh.nix
+    ./programs/vim.nix
+    ./programs/irssi.nix
+  ];
+
   environment.systemPackages = with pkgs; [
     vim
     wget
@@ -9,7 +23,10 @@
     jq
     just
     ripgrep
-    xz unzip zstd gnutar
+    xz
+    unzip
+    zstd
+    gnutar
     fzf
     file
     which
@@ -17,6 +34,9 @@
     bat
     dnsutils
     openssl
+    age
+    sops
+    schemesh
   ];
 
   environment.variables.EDITOR = "vim";
