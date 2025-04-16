@@ -2,4 +2,8 @@
   imports = [
     sops-nix.nixosModules.sops
   ];
+
+  sops = {
+    defaultSopsFile = ./secrets/default.yaml;
+  };
 }

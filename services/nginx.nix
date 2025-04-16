@@ -50,6 +50,8 @@
       enableACME = true;
       root = "/var/www/datamatik.blog/public";
 
+      locations."/forum/".proxyPass = "http://127.0.0.1:8081";
+
       # locations."/preview/" = {
       #   proxyPass = "http://127.0.0.1:1313";
       #   extraConfig = ''

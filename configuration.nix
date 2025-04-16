@@ -4,6 +4,7 @@
     ./programs.nix
     ./services.nix
     ./users.nix
+    ./home-manager.nix
     # ./sops.nix
     (modulesPath + "/profiles/qemu-guest.nix")
   ];

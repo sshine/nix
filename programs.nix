@@ -37,6 +37,7 @@ in
     age
     sops
     schemesh
+    nix-output-monitor
   ];
 
   environment.variables.EDITOR = "vim";
