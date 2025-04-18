@@ -1,8 +1,7 @@
 { ... }: {
   imports = [
-    ./hardware-configuration.nix
-    ./networking.nix # generated at runtime by nixos-infect
-    
+    ./machines/dao-hardware.nix
+    ./machines/dao-networking.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
