@@ -1,4 +1,8 @@
 { pkgs, config, lib, ... }: {
+  imports = [
+    ./zsh.nix
+  ];
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.tmp.cleanOnBoot = true;
