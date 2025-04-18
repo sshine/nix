@@ -1,7 +1,8 @@
 {...}:
 let
 	prometheus_port = 9001;
-  exporter_port = 9002;
+  node_exporter_port = 9002;
+  nginx_exporter_port = 9003;
 in
 {
   services.prometheus = {
@@ -11,7 +12,12 @@ in
       node = {
         enable = true;
         enabledCollectors = [ "systemd" ];
-        port = exporter_port;
+        port = node_exporter_port;
+      };
+
+      nginx = {
+        enable = true;
+        port = nginx_exporter_port;
       };
     };
 
@@ -19,9 +25,17 @@ in
       {
         job_name = "chrysalis";
         static_configs = [{
-          targets = [ "127.0.0.1:${toString exporter_port}" ];
+          targets = [ "127.0.0.1:${toString node_exporter_port}" ];
         }];
       }
+
+      {
+        job_name = "nginx";
+        static_configs = [{
+          targets = [ "127.0.0.1:${toString nginx_exporter_port}" ];
+        }];
+      }
+
     ];
   };
 }
