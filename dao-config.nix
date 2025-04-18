@@ -4,6 +4,7 @@
     ./machines/dao-networking.nix
     ./common.nix
     ./users.nix
+    ./home-manager.nix
   ];
 
   networking.hostName = "dao";
