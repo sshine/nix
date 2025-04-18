@@ -3,7 +3,7 @@ let
   schemesh-pkg = pkgs.fetchgit {
     url = "https://github.com/cosmos72/schemesh.git";
     rev = "refs/heads/main";
-    sha256 = "sha256-8yyVryQhJWiFlXp0xvGRapB8mHw8ydsIP4oW5vlC62Y";
+    sha256 = "sha256-P/TuBor8hcn03tzIiGJ2mO1anpyJZ86kC4WH9pnTVS8=";
   };
   schemesh = pkgs.callPackage schemesh-pkg {};
 in
