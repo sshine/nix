@@ -4,6 +4,8 @@
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.flake-registry = "";
+  nix.channel.enable = false;
   nixpkgs.config.allowUnfree = true;
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
