@@ -1,4 +1,4 @@
-{ nixvim, ... }: {
+{ pkgs, nixvim, ... }: {
   imports = [
     nixvim.nixosModules.default
   ];
@@ -11,7 +11,9 @@
     enable = true;
     defaultEditor = true;
     vimAlias = true;
-    extraPlugins = [];
+
+    # Use space as the <leader> keybinding
+    globals.mapleader = " ";
 
     opts = {
       # Check for vim modeline at the top 3 lines
@@ -38,6 +40,18 @@
 
       # Highlight search results
       showmatch = true;
+    };
+
+    plugins.web-devicons.enable = true;
+
+    plugins.telescope = {
+      enable = true;
+      keymaps = {
+        "<leader>ff" = "find_files";
+        "<leader>fg" = "live_grep";
+        "<leader>fb" = "buffers";
+        "<leader>fh" = "help_tags";
+      };
     };
   };
 }
