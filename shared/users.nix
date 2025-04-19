@@ -14,6 +14,7 @@
         ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAION/ZQUwQruxz7ero92SyO9s7Ck4pw3HPiutpWbcYO5p''
         ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO2aLVgYzvZoWSCURE54JAP0f3oSiIoTNRullHoJYN6z''
         ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+WHf94v0BWIlOlPZZVnlWUgx0+s4EgusbXdWRoLvYD''
+        ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBJqN6vKRZfPx4QOkQoIsJ6vJbiclaU9opbYLdzzk7bY''
       ];
       description = "SSH public keys shared between root and primary super-user account";
     };
