@@ -1,8 +1,9 @@
 { pkgs, ... }: {
   environment.systemPackages = [
-    pkgs.atuin # ^R
-    pkgs.eza   # ls
-    pkgs.git   # prompt, aliases
+    pkgs.atuin  # ^R
+    pkgs.eza    # ls
+    pkgs.git    # prompt, aliases
+    pkgs.zoxide # z (cd alternative)
   ];
 
   users.defaultUserShell = pkgs.zsh;
@@ -68,6 +69,9 @@
     interactiveShellInit = ''
       # ^R
       eval "$(atuin init zsh --disable-up-arrow)"
+
+      # z
+      eval "$(zoxide init zsh)"
     '';
   };
 }
