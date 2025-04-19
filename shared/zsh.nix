@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   environment.systemPackages = [
-    pkgs.atuin
-    pkgs.eza
-    pkgs.git
+    pkgs.atuin # ^R
+    pkgs.eza   # ls
+    pkgs.git   # prompt, aliases
   ];
 
   users.defaultUserShell = pkgs.zsh;
