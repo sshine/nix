@@ -3,7 +3,7 @@
     pkgs.atuin  # ^R
     pkgs.eza    # ls
     pkgs.git    # prompt, aliases
-    pkgs.zoxide # z (cd alternative)
+    pkgs.zoxide # j, ji commands
   ];
 
   users.defaultUserShell = pkgs.zsh;
@@ -71,7 +71,7 @@
       eval "$(atuin init zsh --disable-up-arrow)"
 
       # z
-      eval "$(zoxide init zsh)"
+      eval "$(zoxide init zsh --cmd j)"
     '';
   };
 }
