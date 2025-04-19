@@ -23,6 +23,8 @@
     };
   };
 
+  services.tailscale.enable = true;
+
   environment.variables.EDITOR = "vim";
 
   environment.systemPackages = with pkgs; [
