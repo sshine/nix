@@ -1,6 +1,7 @@
 { pkgs, config, lib, ... }: {
   imports = [
     ./zsh.nix
+    ./vim.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -27,10 +28,7 @@
 
   services.tailscale.enable = true;
 
-  environment.variables.EDITOR = "vim";
-
   environment.systemPackages = with pkgs; [
-    vim
     wget
     curl
     htop
