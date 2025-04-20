@@ -17,23 +17,23 @@
     interfaces = {
       eth0 = {
         ipv4.addresses = [
-          { address="195.201.3.232"; prefixLength=32; }
+          { address = "195.201.3.232"; prefixLength = 32; }
         ];
         ipv6.addresses = [
-          { address="2a01:4f8:1c0c:718c::1"; prefixLength=64; }
-          { address="fe80::9400:4ff:fe3b:2b00"; prefixLength=64; }
+          { address = "2a01:4f8:1c0c:718c::1"; prefixLength = 64; }
+          { address = "fe80::9400:4ff:fe3b:2b00"; prefixLength = 64; }
         ];
-        ipv4.routes = [ { address = "172.31.1.1"; prefixLength = 32; } ];
-        ipv6.routes = [ { address = "fe80::1"; prefixLength = 128; } ];
+        ipv4.routes = [{ address = "172.31.1.1"; prefixLength = 32; }];
+        ipv6.routes = [{ address = "fe80::1"; prefixLength = 128; }];
       };
-            enp7s0 = {
+      enp7s0 = {
         ipv4.addresses = [
-          { address="10.1.1.5"; prefixLength=32; }
+          { address = "10.1.1.5"; prefixLength = 32; }
         ];
         ipv6.addresses = [
-          { address="fe80::8400:ff:fec8:1b9f"; prefixLength=64; }
+          { address = "fe80::8400:ff:fec8:1b9f"; prefixLength = 64; }
         ];
-        };
+      };
     };
   };
   services.udev.extraRules = ''

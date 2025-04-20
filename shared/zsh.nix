@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   environment.systemPackages = [
-    pkgs.atuin  # ^R
-    pkgs.eza    # ls
-    pkgs.git    # prompt, aliases
+    pkgs.atuin # ^R
+    pkgs.eza # ls
+    pkgs.git # prompt, aliases
     pkgs.zoxide # j, ji commands
   ];
 

@@ -65,7 +65,7 @@
       enable = true;
       settings = {
         formatters_by_ft = {
-          nix = ["nixpkgs-fmt"];
+          nix = [ "nixpkgs-fmt" ];
         };
 
         formatters = {
