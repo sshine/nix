@@ -1,10 +1,14 @@
-{ pkgs, nixvim, ... }: {
+{ pkgs, lib, nixvim, ... }: {
   imports = [
     nixvim.nixosModules.default
   ];
 
   nixpkgs.overlays = [
     nixvim.overlays.default
+  ];
+
+  environment.systemPackages = [
+    pkgs.nixpkgs-fmt
   ];
 
   programs.nixvim = {
@@ -28,6 +32,10 @@
       expandtab = true;
       shiftround = true;
 
+      # Indent each line according to the previous
+      cindent = true;
+      smartindent = true;
+
       # Disable terminal mouse support
       mouse = "";
 
@@ -42,8 +50,6 @@
       showmatch = true;
     };
 
-    plugins.web-devicons.enable = true;
-
     plugins.telescope = {
       enable = true;
       keymaps = {
@@ -53,5 +59,20 @@
         "<leader>fh" = "help_tags";
       };
     };
+    plugins.web-devicons.enable = true;
+    plugins.lualine.enable = true;
+    plugins.conform-nvim = {
+      enable = true;
+      settings = {
+        formatters_by_ft = {
+          nix = ["nixpkgs-fmt"];
+        };
+
+        formatters = {
+          "nixpkgs-fmt".command = lib.getExe pkgs.nixpkgs-fmt;
+        };
+      };
+    };
   };
+
 }
