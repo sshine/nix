@@ -12,4 +12,5 @@
   system.stateVersion = "23.11";
 
   programs.irssi.enable = true;
+  programs.terranix.enable = true;
 }

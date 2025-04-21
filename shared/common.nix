@@ -3,6 +3,7 @@
     ../programs/zsh.nix
     ../programs/vim.nix
     ../programs/irssi.nix
+    ../programs/terranix.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
