@@ -1,7 +1,8 @@
 { pkgs, config, lib, ... }: {
   imports = [
-    ./zsh.nix
-    ./vim.nix
+    ../programs/zsh.nix
+    ../programs/vim.nix
+    ../programs/irssi.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
