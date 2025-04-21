@@ -13,6 +13,8 @@
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = true;
 
+  time.timeZone = "Europe/Copenhagen";
+
   security.sudo = {
     enable = true;
     execWheelOnly = true;
