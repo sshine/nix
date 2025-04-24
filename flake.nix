@@ -9,6 +9,9 @@
 
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    secrix.url = "github:Platonic-Systems/secrix";
+    secrix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, ... }: {
@@ -17,5 +20,7 @@
       specialArgs = inputs;
       modules = [ ./machines/dao-config.nix ];
     };
+
+    apps.x86_64-linux.secrix = inputs.secrix.secrix self;
   };
 }

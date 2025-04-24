@@ -5,6 +5,7 @@
     ../shared/common.nix
     ../shared/users.nix
     ../shared/home-manager.nix
+    ../shared/secrix.nix
   ];
 
   networking.hostName = "dao";
