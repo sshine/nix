@@ -1,0 +1,21 @@
+# vi: ft=sshconfig
+
+Host zhen
+  User sshine
+  HostName zhen.mechanicus.xyz
+  Port 222
+
+Host dao
+  User sshine
+  HostName dao.mechanicus.xyz
+  Port 222
+
+Host feng
+  User sshine
+  HostName feng.mechanicus.xyz
+  Port 222
+
+Host shark
+  User sshine
+  HostName shark.mechanicus.xyz
+  Port 222

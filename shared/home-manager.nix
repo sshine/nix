@@ -13,5 +13,11 @@
 
     # Prevent user-level "config missing" message.
     home.file.".zshrc".text = "# Intentionally left blank.";
+
+    # Perform the copy trick (~/.ssh/config cannot be a symlink, and requires certain permissions)
+    home.file.".ssh/config_source" = {
+      source = ../dotfiles/ssh-config;
+      onChange = ''cat ~/.ssh/config_source > ~/.ssh/config && chmod 600 ~/.ssh/config'';
+    };
   };
 }
