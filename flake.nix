@@ -12,6 +12,9 @@
 
     secrix.url = "github:Platonic-Systems/secrix";
     secrix.inputs.nixpkgs.follows = "nixpkgs";
+
+    # vault-secrets = "github:serokell/vault-secrets";
+    # vault-secrets.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, ... }: {
