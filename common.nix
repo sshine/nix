@@ -2,7 +2,6 @@
   imports = [
     ./shared/users.nix
     ./shared/home-manager.nix
-    ./shared/secrix.nix
 
     ./programs/zsh.nix
     ./programs/vim.nix
@@ -58,5 +57,7 @@
     openssl
     watchexec
     nmap
+    nixfmt-rfc-style
+    deadnix
   ];
 }
