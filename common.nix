@@ -1,9 +1,13 @@
 { pkgs, config, lib, ... }: {
   imports = [
-    ../programs/zsh.nix
-    ../programs/vim.nix
-    ../programs/irssi.nix
-    ../programs/terranix.nix
+    ./shared/users.nix
+    ./shared/home-manager.nix
+    ./shared/secrix.nix
+
+    ./programs/zsh.nix
+    ./programs/vim.nix
+    ./programs/irssi.nix
+    ./programs/terranix.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

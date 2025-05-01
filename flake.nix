@@ -13,6 +13,10 @@
     secrix.url = "github:Platonic-Systems/secrix";
     secrix.inputs.nixpkgs.follows = "nixpkgs";
 
+    # fortify.url = "git+https://git.gensokyo.uk/security/fortify";
+    # fortify.inputs.nixpkgs.follows = "nixpkgs";
+    # fortify.inputs.home-manager.follows = "home-manager";
+
     # vault-secrets = "github:serokell/vault-secrets";
     # vault-secrets.inputs.nixpkgs.follows = "nixpkgs";
   };
