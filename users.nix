@@ -6,6 +6,7 @@
     ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAION/ZQUwQruxz7ero92SyO9s7Ck4pw3HPiutpWbcYO5p sshine@shark''
     ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBJqN6vKRZfPx4QOkQoIsJ6vJbiclaU9opbYLdzzk7bY sshine@m3''
     ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHa9kX7Px572nm5ULbdUiRzo8nwQMqDaAU9tBUXmhagQ sshine@feng''
+    ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+WHf94v0BWIlOlPZZVnlWUgx0+s4EgusbXdWRoLvYD sshine@dao''
   ];
 in
 {

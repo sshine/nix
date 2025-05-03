@@ -1,11 +1,10 @@
-{ modulesPath, ... }: {
+{ pkgs, modulesPath, ... }: {
   imports = [
     ./networking.nix
     ./programs.nix
     ./services.nix
     ./users.nix
     ./home-manager.nix
-    # ./sops.nix
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
@@ -13,11 +12,6 @@
 
   networking.hostName = "feng";
   networking.domain = "mechanicus.xyz";
-
-  users.users.root.openssh.authorizedKeys.keys = [
-    ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINk9vVXS7EQYBFKKLQTRSEKpjsVvKKmYcuCZlPLzOqSa''
-    ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO2aLVgYzvZoWSCURE54JAP0f3oSiIoTNRullHoJYN6z sshine@zhen''
-  ];
 
   zramSwap.enable = true;
   boot.tmp.cleanOnBoot = true;

@@ -1,4 +1,15 @@
 { ... }:
+let
+  mkSite = enableSSL: domain: {
+    forceSSL = enableSSL;
+    enableACME = enableSSL;
+    root = "/var/www/${domain}/public";
+    extraConfig = ''
+      access_log /var/log/nginx/${domain}.access.log;
+      error_log /var/log/nginx/${domain}.error.log;
+    '';
+  };
+in
 {
   security.acme = {
     acceptTerms = true;
@@ -30,50 +41,11 @@
       };
     };
 
-    virtualHosts."gordian.systems" = {
-      forceSSL = true;
-      enableACME = true;
-      root = "/var/www/gordian.systems/public";
-    };
-
-    virtualHosts."nix.tools" = {
-      forceSSL = true;
-      enableACME = true;
-      root = "/var/www/nix.tools/public";
-    };
-
-    virtualHosts."simonshine.dk" = {
-      forceSSL = true;
-      enableACME = true;
-      root = "/var/www/simonshine.dk/public";
-    };
-
-    virtualHosts."datamatik.blog" = {
-      forceSSL = true;
-      enableACME = true;
-      root = "/var/www/datamatik.blog/public";
-
-      locations."/forum/".proxyPass = "http://127.0.0.1:8081";
-
-      # locations."/preview/" = {
-      #   proxyPass = "http://127.0.0.1:1313";
-      #   extraConfig = ''
-      #     proxy_set_header Host $host;
-      #     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      #   '';
-      # };
-    };
-
-    virtualHosts."mechanicus.xyz" = {
-      forceSSL = true;
-      enableACME = true;
-      root = "/var/www/mechanicus.xyz/public";
-    };
-
-    virtualHosts."shine-translation.dk" = {
-      forceSSL = true;
-      enableACME = true;
-      root = "/var/www/shine-translation.dk/public";
-    };
+    virtualHosts."gordian.systems" = mkSite true "gordian.systems";
+    virtualHosts."nix.tools" = mkSite true "nix.tools";
+    virtualHosts."simonshine.dk" = mkSite true "simonshine.dk";
+    virtualHosts."datamatik.blog" = mkSite true "datamatik.blog";
+    virtualHosts."mechanicus.xyz" = mkSite true "mechanicus.xyz";
+    virtualHosts."shine-translation.dk" = mkSite true "shine-translation.dk";
   };
 }
