@@ -9,6 +9,7 @@
   ];
 
   services.radicle.enable = true;
+  services.vaultwarden.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

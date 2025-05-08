@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 let
   mkStaticSite = domain: {
     forceSSL = true;
@@ -42,9 +42,23 @@ in
     virtualHosts."simonshine.dk" = mkStaticSite "simonshine.dk";
     virtualHosts."datamatik.blog" = mkStaticSite "datamatik.blog";
     virtualHosts."shine-translation.dk" = mkStaticSite "shine-translation.dk";
+
+    # FIXME: Refactor these into 'mkProxySite'
     virtualHosts."mechanicus.xyz" = mkStaticSite "mechanicus.xyz" // {
       locations."/" = {
-        proxyPass = "http://127.0.0.1:3010";
+        proxyPass = "http://127.0.0.1:${toString config.services.radicle.httpd.listenPort}";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+        '';
+      };
+    };
+    virtualHosts."vault.mechanicus.xyz" = mkStaticSite "vault.mechanicus.xyz" // {
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
         proxyWebsockets = true;
         extraConfig = ''
           proxy_set_header Host $host;
