@@ -1,8 +1,8 @@
 { ... }:
 let
-  mkSite = enableSSL: domain: {
-    forceSSL = enableSSL;
-    enableACME = enableSSL;
+  mkStaticSite = domain: {
+    forceSSL = true;
+    enableACME = true;
     root = "/var/www/${domain}/public";
     extraConfig = ''
       access_log /var/log/nginx/${domain}.access.log;
@@ -31,21 +31,28 @@ in
       listen = [
         { addr = "0.0.0.0"; port = 80; }
         { addr = "[::]"; port = 80; }
-        # { addr = "0.0.0.0"; port = 443; }
-        # { addr = "[::]"; port = 443; }
       ];
-      # sslCertificate = "/etc/ssl/certs/dummy.crt";
-      # sslCertificateKey = "/etc/ssl/private/dummy.key";
       locations."/" = {
         return = "444";
       };
     };
 
-    virtualHosts."gordian.systems" = mkSite true "gordian.systems";
-    virtualHosts."nix.tools" = mkSite true "nix.tools";
-    virtualHosts."simonshine.dk" = mkSite true "simonshine.dk";
-    virtualHosts."datamatik.blog" = mkSite true "datamatik.blog";
-    virtualHosts."mechanicus.xyz" = mkSite true "mechanicus.xyz";
-    virtualHosts."shine-translation.dk" = mkSite true "shine-translation.dk";
+    virtualHosts."nix.tools" = mkStaticSite "nix.tools";
+    virtualHosts."gordian.systems" = mkStaticSite "gordian.systems";
+    virtualHosts."simonshine.dk" = mkStaticSite "simonshine.dk";
+    virtualHosts."datamatik.blog" = mkStaticSite "datamatik.blog";
+    virtualHosts."shine-translation.dk" = mkStaticSite "shine-translation.dk";
+    virtualHosts."mechanicus.xyz" = mkStaticSite "mechanicus.xyz" // {
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:3010";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+        '';
+      };
+    };
   };
 }

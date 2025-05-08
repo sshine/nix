@@ -8,6 +8,8 @@
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
+  services.radicle.enable = true;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "feng";

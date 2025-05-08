@@ -38,6 +38,7 @@ in
     sops
     schemesh
     nix-output-monitor
+    nmap
   ];
 
   environment.variables.EDITOR = "vim";
