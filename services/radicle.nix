@@ -1,6 +1,8 @@
 { pkgs, config, lib, ... }: {
   config = lib.mkIf config.services.radicle.enable {
-    networking.firewall.allowedTCPPorts = [ 8776 3010 ];
+    networking.firewall.allowedTCPPorts = [ 8776 ];
+    environment.systemPackages = [ pkgs.radicle-node ];
+
     services.radicle = {
       privateKeyFile = "/home/sshine/.ssh/id_ed25519";
       publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHa9kX7Px572nm5ULbdUiRzo8nwQMqDaAU9tBUXmhagQ sshine@feng";
