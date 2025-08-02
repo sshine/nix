@@ -1,5 +1,6 @@
 { pkgs, modulesPath, ... }: {
   imports = [
+    ./common.nix
     ./networking.nix
     ./programs.nix
     ./services.nix
@@ -8,13 +9,11 @@
     (modulesPath + "/profiles/qemu-guest.nix")
   ];
 
-  services.radicle.enable = true;
-  services.vaultwarden.enable = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   networking.hostName = "feng";
   networking.domain = "mechanicus.xyz";
+
+  services.radicle.enable = true;
+  services.vaultwarden.enable = true;
 
   zramSwap.enable = true;
   boot.tmp.cleanOnBoot = true;
