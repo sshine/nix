@@ -1,7 +1,7 @@
+# FIXME(sshine): Remove this file once all of the services below can be enabled with options
 { ... }:
 {
   imports = [
-    ./services/sshd.nix
     ./services/nginx.nix
     ./services/tailscale-vpn.nix
     ./services/grafana.nix

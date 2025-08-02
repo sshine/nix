@@ -1,8 +1,8 @@
 {
-  description = "NixOS configuration for Feng VPS";
+  description = "sshine's VPS config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -10,16 +10,27 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    axum-forum.url = "github:sshine/axum-forum/service-flake";
-    axum-forum.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    # vault-secrets = "github:serokell/vault-secrets";
+    # vault-secrets.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... } @ inputs:
   {
+    # webserver
     nixosConfigurations.feng = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = inputs;
-      modules = [ ./feng-config.nix ];
+      modules = [ ./machines/feng-config.nix ];
+    };
+
+    # gateway server
+    nixosConfigurations.dao = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = inputs;
+      modules = [ ./machines/dao-config.nix ];
     };
   };
 }

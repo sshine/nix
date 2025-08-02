@@ -1,19 +1,15 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
+  environment.systemPackages = [
+    pkgs.atuin # ^R
+    pkgs.eza # ls
+    pkgs.git # prompt, aliases
+    pkgs.zoxide # j, ji commands
+  ];
 
   users.defaultUserShell = pkgs.zsh;
 
-  environment.systemPackages = with pkgs; [
-    atuin  # ^R
-    eza    # ls
-    git
-    zsh
-  ];
-
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
 
   programs.zsh = {
     enable = true;
@@ -21,31 +17,16 @@
     enableBashCompletion = true;
     enableGlobalCompInit = true;
 
-    # autosuggetions.enable = true;
-    # autosuggetions.strategy = [ "history" "completion" ];
-
     syntaxHighlighting.enable = true;
     syntaxHighlighting.highlighters = [ "main" "brackets" ];
 
-    histSize = 100000;
-
-    # See `man zshoptions` for more details.
     setOptions = [
-      # Remove duplicates continuously from command history (preserve newest entry).
-      "HIST_IGNORE_DUPS"
-
-      # Instantly share command history between all active shells.
-      "SHARE_HISTORY" # Alternative to: "APPEND_HISTORY", "INC_APPEND_HISTORY",
-
       # Disable ^S and ^Z for less accidental freezing.
       "FLOW_CONTROL"
-
-      # Save timestamp and duration of each command in command history.
-      "EXTENDED_HISTORY"
     ];
 
     shellAliases = {
-      # Navigation
+      # files
       rm = "rm -iv";
       ls = "eza -lg";
       tree = "eza -lgT";
@@ -60,6 +41,7 @@
       gl = "git log --decorate=short --color | less -R";
       gpr = "git pull --rebase";
       gcp = "git cherry-pick";
+      gria = "git rebase -i --autosquash";
     };
 
     promptInit = ''
@@ -67,13 +49,6 @@
       promptinit
       prompt off
 
-      # Simple:
-      # PS1='[%n@%m:%~] %(!.#.$) '
-
-      # Colorful:
-      # PS1='[%F{green}%n@%m%f:%F{blue}%~%f] %(!.#.$) '
-
-      # Colorful with git branch:
       function git_branch_name() {
         branch=$(git symbolic-ref HEAD --short 2>/dev/null)
         if [ ! -z "$branch" ]; then
@@ -81,43 +56,41 @@
         fi
       }
 
-      # prompt='[%F{green}%n@%m%f:%F{blue}%~%f]$(git_branch_name) %(!.#.$) '
-
       # Omit username, print hostname + '$' with red when root, otherwise green:
+      # https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
       prompt='[%(!.%F{red}.%F{green})%m%f:%F{blue}%~%f]$(git_branch_name) %(!.%F{red}#%f.$) '
 
       # See: https://zsh.sourceforge.io/Doc/Release/Options.html#Prompting
-      setopt prompt_cr
-      setopt prompt_sp
-      setopt prompt_subst
+      setopt prompt_cr    # print carriage return before printing a prompt in line editor
+      setopt prompt_sp    # attempt to preserve partial lines using ansi control chars
+      setopt prompt_subst # perform {parameter, command, arithmetic} expansion in prompts
 
-      export PROMPT_EOL_MARK=""
+      export PROMPT_EOL_MARK="" # don't show end-of-line marker on partial lines
     '';
 
-interactiveShellInit = ''
-      # Prevent user-level "config missing" message.
-      touch $HOME/.zshrc
-
-      # MacOS
-      bindkey '^[[7~' beginning-of-line
-      bindkey '^[[8~' end-of-line
-
-      # Linux
-      bindkey '^[[1;3D' beginning-of-line  # alt+left
-      bindkey '^[[1;3C' end-of-line        # alt+right
-      bindkey '^[[1;5D' backward-word      # ctrl+left
-      bindkey '^[[1;5C' forward-word       # ctrl+right
-
-      # Both
-      bindkey '^R' history-incremental-search-backward
+    interactiveShellInit = ''
+      # Copy-paste
       bindkey '^U' kill-whole-line
       bindkey '^Y' yank
 
-      # Compensate for modern terminals
-      export TERM=xterm-256color
-
       # ^R
       eval "$(atuin init zsh --disable-up-arrow)"
+
+      # j as jumpy cd alternative
+      eval "$(zoxide init zsh --cmd j)"
+
+      # MacOS
+      # bindkey '^[[7~' beginning-of-line
+      # bindkey '^[[8~' end-of-line
+
+      # Linux
+      # bindkey '^[[1;3D' beginning-of-line  # alt+left
+      # bindkey '^[[1;3C' end-of-line        # alt+right
+      # bindkey '^[[1;5D' backward-word      # ctrl+left
+      # bindkey '^[[1;5C' forward-word       # ctrl+right
+
+      # Both
+      # bindkey '^R' history-incremental-search-backward
     '';
   };
 }
