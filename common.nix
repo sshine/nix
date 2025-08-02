@@ -7,6 +7,7 @@
     ./programs/vim.nix
     ./programs/irssi.nix
     ./programs/terranix.nix
+    ./programs/claude-code.nix
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -59,5 +60,6 @@
     nmap
     nixfmt-rfc-style
     deadnix
+    ghostty.terminfo
   ];
 }

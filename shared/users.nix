@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: {
+{ lib, config, ... }: {
   options = {
     users.superUser = lib.mkOption {
       type = lib.types.str;
@@ -15,6 +15,7 @@
         ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO2aLVgYzvZoWSCURE54JAP0f3oSiIoTNRullHoJYN6z''
         ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+WHf94v0BWIlOlPZZVnlWUgx0+s4EgusbXdWRoLvYD''
         ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBJqN6vKRZfPx4QOkQoIsJ6vJbiclaU9opbYLdzzk7bY''
+        ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFWF+CfMuGgMsnqz8QWcNpxdx5j63UT6Mh7WCqvTH6o5 sshine@m1''
       ];
       description = "SSH public keys shared between root and primary super-user account";
     };

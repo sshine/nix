@@ -152,28 +152,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nixvim": "nixvim",
-        "secrix": "secrix"
-      }
-    },
-    "secrix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1727012350,
-        "narHash": "sha256-sP4LXXvp9b6hYf/tQMxI+gURf1uXhqb6oytXCFRkw3A=",
-        "owner": "Platonic-Systems",
-        "repo": "secrix",
-        "rev": "0726d0382d679f983f97ede9da8aaf426e2b5003",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Platonic-Systems",
-        "repo": "secrix",
-        "type": "github"
+        "nixvim": "nixvim"
       }
     },
     "systems": {
