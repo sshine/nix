@@ -42,6 +42,7 @@
       gpr = "git pull --rebase";
       gcp = "git cherry-pick";
       gria = "git rebase -i --autosquash";
+      grb = "git rebase -i --autosquash $(git merge-base HEAD master)";
     };
 
     promptInit = ''
