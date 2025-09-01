@@ -1,9 +1,10 @@
-{ pkgs, modulesPath, ... }: {
+{ birthday-rsvp, pkgs, modulesPath, ... }: {
   imports = [
     ../common.nix
     ../services.nix # FIXME(sshine): Enable using options instead.
     ./feng-networking.nix
     ./hetzner-vps-hardware.nix
+    birthday-rsvp.nixosModules.default
   ];
 
   networking.hostName = "feng";
@@ -12,4 +13,10 @@
 
   services.radicle.enable = true;
   services.vaultwarden.enable = true;
+
+  services.birthday-rsvp = {
+    enable = true;
+    domain = "party.simonshine.dk";
+    secretKey = "change-me";
+  };
 }

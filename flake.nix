@@ -13,6 +13,9 @@
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
+    birthday-rsvp.url = "git+ssh://git@github.com/sshine/birthday-rsvp.git";
+    birthday-rsvp.inputs.nixpkgs.follows = "nixpkgs";
+
     # vault-secrets = "github:serokell/vault-secrets";
     # vault-secrets.inputs.nixpkgs.follows = "nixpkgs";
   };
