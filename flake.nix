@@ -35,5 +35,10 @@
       specialArgs = inputs;
       modules = [ ./machines/dao-config.nix ];
     };
+
+    nixosModules = {
+      zsh = ./programs/zsh.nix;
+      vim = ./programs/vim.nix;
+    };
   };
 }
