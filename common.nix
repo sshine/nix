@@ -2,6 +2,7 @@
   imports = [
     ./shared/users.nix
     ./shared/home-manager.nix
+    ./services/atuin.nix # FIXME(sshine): Share services with dendritic pattern: https://github.com/mightyiam/dendritic
 
     ./programs/zsh.nix
     ./programs/vim.nix
@@ -64,6 +65,7 @@
     nixpkgs-fmt
 
     # networking
+    unixtools.ifconfig
     dnsutils
     nmap
 
@@ -71,6 +73,7 @@
     age
     openssl
     sops
+    pwgen
 
     # compression
     gnutar

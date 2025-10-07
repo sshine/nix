@@ -11,4 +11,5 @@
 
   programs.irssi.enable = true;
   programs.terranix.enable = true;
+  # services.atuin.enable = true;
 }
