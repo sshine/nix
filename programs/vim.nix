@@ -33,8 +33,9 @@
       shiftround = true;
 
       # Indent each line according to the previous
-      cindent = true;
-      smartindent = true;
+      cindent = false;
+      smartindent = false;
+      autoindent = true;
 
       # Disable terminal mouse support
       mouse = "";
