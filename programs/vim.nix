@@ -31,6 +31,7 @@
       tabstop = 2;
       expandtab = true;
       shiftround = true;
+      textwidth = 100;
 
       # Indent each line according to the previous
       cindent = false;

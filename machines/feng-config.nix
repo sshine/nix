@@ -11,8 +11,10 @@
   networking.domain = "mechanicus.xyz";
   system.stateVersion = "23.11";
 
-  services.radicle.enable = true;
+  programs.claude-code.enable = true;
+  services.radicle.enable = false;
   services.vaultwarden.enable = true;
+  services.oci-registry.enable = false;
 
   services.birthday-rsvp = {
     enable = true;

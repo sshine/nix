@@ -8,6 +8,7 @@
     ./services/prometheus.nix
     ./services/radicle.nix
     ./services/vaultwarden.nix
+    ./services/registry.nix
     # ./services/axum-forum.nix
     # ./services/gitea.nix
     # ./services/loki.nix
