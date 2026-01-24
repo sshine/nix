@@ -1,4 +1,5 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config }:
+{
   options = {
     programs.terranix.enable = lib.mkEnableOption "terranix";
     programs.terranix.package = lib.mkOption {

@@ -47,6 +47,7 @@
     fzf
     htop
     jq
+    fx
     just
     killall
     ripgrep

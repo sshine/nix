@@ -11,5 +11,6 @@
 
   programs.irssi.enable = true;
   programs.terranix.enable = true;
+  programs.claude-code.enable = true;
   # services.atuin.enable = true;
 }
