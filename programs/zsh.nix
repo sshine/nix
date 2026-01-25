@@ -1,4 +1,9 @@
-{ pkgs, ... }: {
+# Platform-agnostic zsh configuration (works on NixOS and nix-darwin)
+{ pkgs, lib, ... }:
+let
+  isDarwin = pkgs.stdenv.isDarwin;
+  isLinux = pkgs.stdenv.isLinux;
+in {
   environment.systemPackages = [
     pkgs.atuin # ^R
     pkgs.eza # ls
@@ -6,44 +11,34 @@
     pkgs.zoxide # j, ji commands
   ];
 
-  users.defaultUserShell = pkgs.zsh;
+  # Works on both platforms
+  environment.shellAliases = {
+    # files
+    rm = "rm -iv";
+    ls = "eza -lg";
+    tree = "eza -lgT";
+
+    # git
+    gs = "git status";
+    gd = "git diff";
+    gdc = "git diff --cached";
+    gca = "git commit --amend";
+    gcv = "git commit --verbose";
+    gap = "git add -p";
+    gl = "git log --decorate=short --color | less -R";
+    gpr = "git pull --rebase";
+    gcp = "git cherry-pick";
+    gria = "git rebase -i --autosquash";
+    grb = "git rebase -i --autosquash $(git merge-base HEAD master)";
+  };
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
   programs.zsh = {
+    # Common options (both platforms)
     enable = true;
     enableCompletion = true;
-    enableBashCompletion = true;
-    enableGlobalCompInit = true;
-
-    syntaxHighlighting.enable = true;
-    syntaxHighlighting.highlighters = [ "main" "brackets" ];
-
-    setOptions = [
-      # Disable ^S and ^Z for less accidental freezing.
-      "FLOW_CONTROL"
-    ];
-
-    shellAliases = {
-      # files
-      rm = "rm -iv";
-      ls = "eza -lg";
-      tree = "eza -lgT";
-
-      # git
-      gs = "git status";
-      gd = "git diff";
-      gdc = "git diff --cached";
-      gca = "git commit --amend";
-      gcv = "git commit --verbose";
-      gap = "git add -p";
-      gl = "git log --decorate=short --color | less -R";
-      gpr = "git pull --rebase";
-      gcp = "git cherry-pick";
-      gria = "git rebase -i --autosquash";
-      grb = "git rebase -i --autosquash $(git merge-base HEAD master)";
-    };
 
     promptInit = ''
       autoload -U promptinit
@@ -70,6 +65,9 @@
     '';
 
     interactiveShellInit = ''
+      # Disable ^S and ^Q flow control
+      unsetopt FLOW_CONTROL
+
       # Copy-paste
       bindkey '^U' kill-whole-line
       bindkey '^Y' yank
@@ -79,19 +77,14 @@
 
       # j as jumpy cd alternative
       eval "$(zoxide init zsh --cmd j)"
-
-      # MacOS
-      # bindkey '^[[7~' beginning-of-line
-      # bindkey '^[[8~' end-of-line
-
-      # Linux
-      # bindkey '^[[1;3D' beginning-of-line  # alt+left
-      # bindkey '^[[1;3C' end-of-line        # alt+right
-      # bindkey '^[[1;5D' backward-word      # ctrl+left
-      # bindkey '^[[1;5C' forward-word       # ctrl+right
-
-      # Both
-      # bindkey '^R' history-incremental-search-backward
     '';
+  } // lib.optionalAttrs isLinux {
+    # NixOS options
+    enableBashCompletion = true;
+    syntaxHighlighting.enable = true;
+    syntaxHighlighting.highlighters = [ "main" "brackets" ];
+  } // lib.optionalAttrs isDarwin {
+    # nix-darwin options
+    enableSyntaxHighlighting = true;
   };
 }

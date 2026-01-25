@@ -42,5 +42,10 @@
       zsh = ./programs/zsh.nix;
       vim = ./programs/vim.nix;
     };
+
+    darwinModules = {
+      zsh = ./programs/zsh.nix;
+      vim = ./programs/vim.nix;
+    };
   };
 }

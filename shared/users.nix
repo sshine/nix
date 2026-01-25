@@ -1,4 +1,4 @@
-{ lib, config, ... }: {
+{ lib, pkgs, config, ... }: {
   options = {
     users.superUser = lib.mkOption {
       type = lib.types.str;
@@ -23,6 +23,7 @@
   };
 
   config = {
+    users.defaultUserShell = pkgs.zsh;
     users.users.root.openssh.authorizedKeys.keys = config.users.sharedKeys;
     users.users.${config.users.superUser} = {
       isNormalUser = true;
