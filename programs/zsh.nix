@@ -1,14 +1,12 @@
 # Platform-agnostic zsh configuration (works on NixOS and nix-darwin)
-{ pkgs, lib, ... }:
-let
-  isDarwin = pkgs.stdenv.isDarwin;
-  isLinux = pkgs.stdenv.isLinux;
-in {
+{ pkgs, ... }:
+{
   environment.systemPackages = [
     pkgs.atuin # ^R
     pkgs.eza # ls
     pkgs.git # prompt, aliases
     pkgs.zoxide # j, ji commands
+    pkgs.zsh-syntax-highlighting
   ];
 
   # Works on both platforms
@@ -65,6 +63,9 @@ in {
     '';
 
     interactiveShellInit = ''
+      # Enable bash completion compatibility
+      autoload -U bashcompinit && bashcompinit
+
       # Disable ^S and ^Q flow control
       unsetopt FLOW_CONTROL
 
@@ -77,14 +78,10 @@ in {
 
       # j as jumpy cd alternative
       eval "$(zoxide init zsh --cmd j)"
+
+      # Syntax highlighting (must be sourced last)
+      ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+      source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     '';
-  } // lib.optionalAttrs isLinux {
-    # NixOS options
-    enableBashCompletion = true;
-    syntaxHighlighting.enable = true;
-    syntaxHighlighting.highlighters = [ "main" "brackets" ];
-  } // lib.optionalAttrs isDarwin {
-    # nix-darwin options
-    enableSyntaxHighlighting = true;
   };
 }
