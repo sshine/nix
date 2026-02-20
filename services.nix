@@ -4,11 +4,11 @@
   imports = [
     ./services/nginx.nix
     ./services/tailscale-vpn.nix
-    ./services/grafana.nix
-    ./services/prometheus.nix
-    ./services/radicle.nix
-    ./services/vaultwarden.nix
     ./services/registry.nix
+    # ./services/prometheus.nix
+    # ./services/vaultwarden.nix
+    # ./services/radicle.nix
+    # ./services/grafana.nix
     # ./services/axum-forum.nix
     # ./services/gitea.nix
     # ./services/loki.nix

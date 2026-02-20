@@ -18,6 +18,9 @@
     birthday-rsvp.url = "git+ssh://git@github.com/sshine/birthday-rsvp.git";
     birthday-rsvp.inputs.nixpkgs.follows = "nixpkgs";
 
+    claudebox.url = "github:numtide/claudebox";
+    claudebox.inputs.nixpkgs.follows = "nixpkgs";
+
     # vault-secrets = "github:serokell/vault-secrets";
     # vault-secrets.inputs.nixpkgs.follows = "nixpkgs";
   };

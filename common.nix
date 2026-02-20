@@ -7,7 +7,7 @@
     ./programs/zsh.nix
     ./programs/vim.nix
     ./programs/irssi.nix
-    ./programs/terranix.nix
+    # ./programs/terranix.nix
     ./programs/claude-code.nix
   ];
 

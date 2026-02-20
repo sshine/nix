@@ -55,6 +55,13 @@ in
     defaults.email = "simon@gordian.systems";
   };
 
+  services.nginx.appendHttpConfig = ''
+    proxy_headers_hash_max_size 1024;
+    proxy_headers_hash_bucket_size 128;
+  '';
+
+  services.nginx.serverNamesHashBucketSize = 128;
+
   services.nginx = {
     enable = true;
 
@@ -87,6 +94,6 @@ in
 
     # Apps
     # virtualHosts."mechanicus.xyz" = mkProxiedSite "mechanicus.xyz" config.services.radicle.httpd.listenPort;
-    virtualHosts."vault.mechanicus.xyz" = mkProxiedSite "vault.mechanicus.xyz" config.services.vaultwarden.config.ROCKET_PORT;
+    # virtualHosts."vault.mechanicus.xyz" = mkProxiedSite "vault.mechanicus.xyz" config.services.vaultwarden.config.ROCKET_PORT;
   };
 }

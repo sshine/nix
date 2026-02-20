@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, claudebox, ... }: {
   options = {
     programs.claude-code.enable = lib.mkEnableOption "claude-code";
   };
@@ -7,6 +7,7 @@
     {
       environment.systemPackages = [
         pkgs.claude-code
+        claudebox.packages.aarch64-darwin.default
       ];
     };
 }
