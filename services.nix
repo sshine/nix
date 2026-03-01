@@ -5,6 +5,7 @@
     ./services/nginx.nix
     ./services/tailscale-vpn.nix
     ./services/registry.nix
+    ./services/attic.nix
     # ./services/prometheus.nix
     # ./services/vaultwarden.nix
     # ./services/radicle.nix

@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 let
   robotsTxtLocation = {
     "=/robots.txt" = {
@@ -95,5 +95,23 @@ in
     # Apps
     # virtualHosts."mechanicus.xyz" = mkProxiedSite "mechanicus.xyz" config.services.radicle.httpd.listenPort;
     # virtualHosts."vault.mechanicus.xyz" = mkProxiedSite "vault.mechanicus.xyz" config.services.vaultwarden.config.ROCKET_PORT;
+
+    virtualHosts."s3.${config.networking.domain}" = lib.mkIf config.services.garage.enable (lib.mkMerge [
+      (mkProxiedSite "127.0.0.1" 3900)
+      {
+        extraConfig = ''
+          client_max_body_size 0;
+        '';
+      }
+    ]);
+
+    virtualHosts."cache.${config.networking.domain}" = lib.mkIf config.services.atticd.enable (lib.mkMerge [
+      (mkProxiedSite "127.0.0.1" 8080)
+      {
+        extraConfig = ''
+          client_max_body_size 0;
+        '';
+      }
+    ]);
   };
 }

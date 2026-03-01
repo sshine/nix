@@ -16,6 +16,9 @@
   services.vaultwarden.enable = true;
   services.oci-registry.enable = false;
 
+  # Nix binary cache server
+  services.atticd.enable = true;
+
   services.birthday-rsvp = {
     enable = true;
     domain = "party.simonshine.dk";

@@ -15,8 +15,10 @@
         ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO2aLVgYzvZoWSCURE54JAP0f3oSiIoTNRullHoJYN6z''
         ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+WHf94v0BWIlOlPZZVnlWUgx0+s4EgusbXdWRoLvYD''
         ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBJqN6vKRZfPx4QOkQoIsJ6vJbiclaU9opbYLdzzk7bY''
-        ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFWF+CfMuGgMsnqz8QWcNpxdx5j63UT6Mh7WCqvTH6o5 sshine@m1''
-        ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFUMtKxIrZdXFRBRjHhI5o/loiu6HG0Yb87Ots5FBQH2 sshine@derp15''
+        ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFWF+CfMuGgMsnqz8QWcNpxdx5j63UT6Mh7WCqvTH6o5''
+        ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFUMtKxIrZdXFRBRjHhI5o/loiu6HG0Yb87Ots5FBQH2''
+        ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL021KY3e7ngm9RbMYmI/VQDUquLzd5M6/xlEuvcHzrn''
+        ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICjsn8RBtdJzneALvXNwyrpFzb6GqzZnHRjjvMjXBzPW''
       ];
       description = "SSH public keys shared between root and primary super-user account";
     };

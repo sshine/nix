@@ -7,7 +7,7 @@
     {
       environment.systemPackages = [
         pkgs.claude-code
-        claudebox.packages.aarch64-darwin.default
+        claudebox.packages.${pkgs.system}.default
       ];
     };
 }
