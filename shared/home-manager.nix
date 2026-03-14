@@ -21,6 +21,8 @@
         source = ../dotfiles/ssh-config;
         onChange = ''cat ~/.ssh/config_source > ~/.ssh/config && chmod 600 ~/.ssh/config'';
       };
+
+      home.file.".gitconfig".source = ../dotfiles/dot.gitconfig;
     };
   };
 }

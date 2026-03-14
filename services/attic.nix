@@ -9,7 +9,6 @@
     # Then: chmod 600 /var/secrets/atticd.env && chown atticd:atticd /var/secrets/atticd.env
     # And: garage bucket create attic && garage bucket allow attic --read --write --key attic-key
     services.atticd = {
-      enable = true;
       environmentFile = "/var/secrets/atticd.env";
       settings = {
         listen = "[::]:8080";
@@ -37,8 +36,12 @@
     };
 
     # S3-compatible object storage (Garage)
+    # After initial setup, create /var/secrets/garage-rpc-secret with:
+    #   openssl rand -hex 32 > /var/secrets/garage-rpc-secret
+    # Then: chmod 600 /var/secrets/garage-rpc-secret && chown garage:garage /var/secrets/garage-rpc-secret
     services.garage = {
       enable = true;
+      package = pkgs.garage;
       settings = {
         metadata_dir = "/var/lib/garage/meta";
         data_dir = [
@@ -51,6 +54,7 @@
 
         rpc_bind_addr = "[::]:3901";
         rpc_public_addr = "127.0.0.1:3901";
+        rpc_secret_file = "/var/secrets/garage-rpc-secret";
 
         s3_api = {
           s3_region = "garage";

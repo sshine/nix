@@ -1,0 +1,6 @@
+[user]
+	name = Simon Shine
+	email = simon@simonshine.dk
+
+[push]
+	autoSetupRemote = true
