@@ -7,7 +7,7 @@
     {
       environment.systemPackages = [
         pkgs.claude-code
-        claudebox.packages.${pkgs.system}.default
+        claudebox.packages.${pkgs.stdenv.hostPlatform.system}.default
       ];
     };
 }

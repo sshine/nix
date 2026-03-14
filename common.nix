@@ -82,5 +82,8 @@
     xz
     zip
     zstd
+
+    # devops
+    opentofu
   ];
 }
